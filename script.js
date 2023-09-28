@@ -1,49 +1,60 @@
-function searchPC(){
-    let inpt = document.querySelector('.inpt');
-    let itm = document.querySelectorAll('.itm');
-    let nmPhn = document.querySelectorAll('.itm h1');
-    let ntFn = document.querySelectorAll('.notFnd');
-    let found = false;
+let btnSend = document.querySelector('.plcSend button');
+let inpSend = document.querySelector('.inptSend');
+let chat = document.querySelector('.chat');
+let ErrMs = document.querySelector('.ErrMs');
 
-    inpt.value = inpt.value.replaceAll('adam', '3amk')
+function boxMsg(){
+    return `<div class="msUser">${inpSend.value}</div>`
+};
 
-    for( let i=0 ; i<nmPhn.length ; i++){
-        if(nmPhn[i].innerHTML.toUpperCase().trim().includes(inpt.value.toUpperCase().trim().replaceAll(' ',''))){
-            itm[i].style.display = ""
-            found = true;
+function boxMsg2(){
+    return `<div class="user">${inpSend.value}</div>`
+};
+
+function Err(){
+    ErrMs.style.display = "flex"
+    setTimeout(() => {
+        ErrMs.style.opacity = "1"
+    },0)
+    setTimeout(() => {
+        ErrMs.style.opacity = "0"
+    },3000)
+    setTimeout(() => {
+        ErrMs.style.display = "none"
+    },3500)
+}
+
+function sendMsg(){
+        if(inpSend.value){
+            chat.innerHTML += boxMsg();
+            inpSend.value = '';
+            btnSend.style.opacity = "0.3"
         }else{
-            itm[i].style.display = "none"
+            Err();
+            ErrMs.children[0].innerHTML = "You have to write something"
         }
+}
 
+
+document.addEventListener('keydown', (e) => {
+    if(e.key === "Enter"){
+        sendMsg();
     }
-    if(!found){
-        ntFn[0].style.display = "block"
+    if(e.key === "p"){
+        if(inpSend.value){
+            chat.innerHTML += boxMsg2();
+            inpSend.value = '';
+        }else{
+            Err();
+            ErrMs.children[0].innerHTML = "You have to write something"
+        }
+    }
+})
+
+inpSend.addEventListener('keyup', () => {
+    if(inpSend.value){
+        btnSend.style.opacity = "1"
     }else{
-        ntFn[0].style.display = "none"
+        btnSend.style.opacity = "0.3"
     }
-
-}
-
-function req(){
-    let req = new XMLHttpRequest();
-    req.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            let getData = JSON.parse(this.responseText)
-            for( let i=0 ; i<getData.length ; i++){
-            // __________________________________________________________________________________________________
-
-                document.body.children[1].innerHTML += `<div style="background-color:${getData[i].clr};" class="itm">
-                <img src="${getData[i].icon}">
-                <h1>${getData[i].name}</h1>
-            </div>`
-
-            // __________________________________________________________________________________________________
-            
-        }
-        }
-    }
-    req.open('GET', 'data.txt', true);
-    req.send()
-}
-
-req()
+})
