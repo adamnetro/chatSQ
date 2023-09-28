@@ -170,24 +170,24 @@ body{
 .msUser{
     background-color: var(--cl3);
     padding: 10px;
-    font-size: 1.3em;
-    width: max-content;
-    max-width: 67%;
-    word-wrap: break-word;
-    border-radius: 20px;
-    border-top-left-radius: 0px;
-}
-
-.user{
-    border: 2px solid var(--cl3);
     margin-left: auto;
-    padding: 10px;
     font-size: 1.3em;
     width: max-content;
     max-width: 67%;
     word-wrap: break-word;
     border-radius: 20px;
     border-top-right-radius: 0px;
+}
+
+.user{
+    border: 2px solid var(--cl3);
+    padding: 10px;
+    font-size: 1.3em;
+    width: max-content;
+    max-width: 67%;
+    word-wrap: break-word;
+    border-radius: 20px;
+    border-top-left-radius: 0px;
     color: white;
 }
 
