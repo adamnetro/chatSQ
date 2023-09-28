@@ -108,6 +108,7 @@ body{
     border-radius: 30px;
 }
 
+
 .stMn{
     width: 95%;
     height: 10%;
@@ -134,12 +135,12 @@ body{
 }
 
 .stMn span img{
-    height: 2em;
-    width: 2em;
+    height: 1.5em;
+    width: 1.5em;
 }
 
 .stMn span:hover{
-    background-color: var(--cl1);
+    background-color: rgb(56, 56, 56);
 }
 .stMn span:active{
     background-color: rgb(51, 51, 51);
